@@ -1,0 +1,36 @@
+services:
+  mock-event-service:
+    build: ./docker/mock-event-service
+    ports:
+      - "8001:8001"
+  redis:
+    image: "redis/redis-stack:latest"
+    ports:
+      - 6379:6379
+      - 8002:8001
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+  backend-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mock-event-service
+      - redis
+    environment:
+      - ENV=local_docker
+## Future work
+#  worker:
+#    build: .
+#    command: poetry run arq app.infrastructure.arq_worker.WorkerSettings
+#    environment:
+#      - REDIS_HOST=redis
+#      - REDIS_PORT=6379
+#      - REDIS_DB=0
+#    depends_on:
+#      - redis

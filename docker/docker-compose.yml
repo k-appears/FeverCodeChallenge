@@ -1,0 +1,9 @@
+services:
+  mock-event-service:
+    build: ./mock-event-service
+    ports:
+      - "8001:8001"
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"

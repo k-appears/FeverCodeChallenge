@@ -1,0 +1,6 @@
+external_providers:
+  - class_name: ProviderA
+    api_module_path: app.infrastructure.api.external_providers.provider_a
+    repository_module_path: app.infrastructure.repository.provider_a
+    config:
+      provider_url: http://mock-event-service:8001/api/v1/events/

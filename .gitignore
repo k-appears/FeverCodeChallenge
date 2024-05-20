@@ -1,0 +1,12 @@
+# Pycharm
+.idea/
+**/__pycache__/
+/.pytest_cache/
+.venv/
+
+.tmp
+
+.coverage
+htmlcov/
+
+.vscode/
